@@ -25,12 +25,24 @@ database.connect();
 // Middlewares
 app.use(express.json());
 app.use(cookieParser());
+
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://e-learn-font.onrender.com' // your deployed frontend
+];
+
 app.use(
-	cors({
-		origin: "*",
-		credentials: true,
-	})
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
 );
+// app.use(
+// 	cors({
+// 		origin: "*",
+// 		credentials: true,
+// 	})
+// );
 app.use(
 	fileUpload({
 		useTempFiles: true,
